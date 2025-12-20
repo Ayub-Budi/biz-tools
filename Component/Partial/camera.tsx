@@ -8,7 +8,7 @@ export default function Camera() {
   const streamRef = useRef<MediaStream | null>(null);
 
   const [imgData, setImgData] = useState<string | null>(null);
-  const [facingMode, setFacingMode] = useState<FacingMode>("user");
+  const [facingMode, setFacingMode] = useState<FacingMode>("environment");
 
   const startCamera = async () => {
     try {

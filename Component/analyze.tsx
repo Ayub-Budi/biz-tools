@@ -1,14 +1,15 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { Aperture, SwitchCamera } from 'lucide-react';
 
 type FacingMode = "user" | "environment";
 
-export default function Camera({ title, onCapture, isLoading }: { title?: string, onCapture?: (blob: Blob) => void , isLoading?: boolean }) {
+export default function CameraPage() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
 
+  const [imgData, setImgData] = useState<string | null>(null);
   const [facingMode, setFacingMode] = useState<FacingMode>("environment");
+  const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
 
   // Fungsi pembantu mengubah base64 dari canvas menjadi Blob/File
@@ -44,6 +45,27 @@ export default function Camera({ title, onCapture, isLoading }: { title?: string
     return () => streamRef.current?.getTracks().forEach((t) => t.stop());
   }, [facingMode]);
 
+  const handleAnalyze = async (base64Image: string) => {
+    setLoading(true);
+    setResult("");
+    try {
+      const formData = new FormData();
+      const imageBlob = base64ToBlob(base64Image);
+      formData.append("image", imageBlob, "capture.png");
+
+      const response = await fetch("/api/analyze", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      setResult(data.text || "Gagal mendapatkan hasil.");
+    } catch (err) {
+      setResult("Terjadi kesalahan koneksi.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const capture = () => {
     if (!videoRef.current) return;
@@ -56,13 +78,14 @@ export default function Camera({ title, onCapture, isLoading }: { title?: string
 
     ctx.drawImage(videoRef.current, 0, 0);
     const dataUrl = canvas.toDataURL("image/png");
-    onCapture?.(base64ToBlob(dataUrl));
+    setImgData(dataUrl);
+    handleAnalyze(dataUrl);
   };
 
   return (
     <div className="max-w-md mx-auto  space-y-4">
       <h2 className="text-xl font-bold text-center">
-        {title || "Camera Analyzer"}
+        Apa yang ada di foto ini?
       </h2>
 
       <div className="relative overflow-hidden rounded-lg bg-black w-full">
@@ -74,21 +97,43 @@ export default function Camera({ title, onCapture, isLoading }: { title?: string
           className="w-full object-cover aspect-[3/4]"
         />
 
-        <button className="absolute top-4 right-4 bg-black/50 p-2 rounded-md text-white" onClick={() => setFacingMode(facingMode === "user" ? "environment" : "user")}>
-          <SwitchCamera />
-        </button>
-
-        <div className="flex gap-2 p-6 absolute bottom-0 left-0 right-0  bg-opacity-50 items-center justify-center">
+        <div className="flex gap-2 p-6 absolute bottom-0 left-0 right-0  bg-opacity-50">
           <button
             onClick={capture}
-            disabled={isLoading}
-            className=" bg-white hover:bg-blue-700 hover:text-white text-black font-bold py-3 rounded-xl disabled:opacity-50 h-15 w-15 flex items-center justify-center"
+            disabled={loading}
+            className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg disabled:opacity-50"
           >
-            <Aperture className="text-3xl" />
+            {loading ? "Menganalisa..." : "Ambil & Analisa Foto"}
           </button>
 
+          <button
+            onClick={() =>
+              setFacingMode((p) => (p === "user" ? "environment" : "user"))
+            }
+            className="px-4 py-2 bg-gray-200 rounded-lg"
+          >
+            🔄
+          </button>
         </div>
       </div>
+
+      {result && (
+        <div className="p-4 bg-gray-100 rounded-lg border-l-4 border-blue-500">
+          <h3 className="font-bold mb-1">Hasil Analisis:</h3>
+          <p className="text-gray-700 leading-relaxed">{result}</p>
+        </div>
+      )}
+
+      {imgData && !loading && (
+        <div className="mt-4">
+          <p className="text-sm text-gray-500 mb-2">Foto Terakhir:</p>
+          <img
+            src={imgData}
+            alt="capture"
+            className="w-32 h-auto rounded border"
+          />
+        </div>
+      )}
     </div>
   );
 }

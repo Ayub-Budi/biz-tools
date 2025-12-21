@@ -48,7 +48,7 @@ export async function POST(req: Request) {
         {
           role: "user",
           parts: [
-            { text: "Analisa barang di foto ini menggunakan bahasa Indonesia dan berikan output JSON dengan key: 'name', 'color', 'desc'." },
+            { text: "Analisa barang di foto ini menggunakan bahasa Indonesia dan berikan output JSON dengan key: 'name', 'color', 'desc', 'category'." },
             {
               inlineData: {
                 data: base64Data,

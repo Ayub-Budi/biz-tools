@@ -2,6 +2,12 @@
 import { useEffect, useRef, useState } from "react";
 
 type FacingMode = "user" | "environment";
+type AnalyzeResult = {
+  name: string;
+  color: string;
+  desc: string;
+  category: string;
+};
 
 export default function CameraPage() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -9,7 +15,8 @@ export default function CameraPage() {
 
   const [imgData, setImgData] = useState<string | null>(null);
   const [facingMode, setFacingMode] = useState<FacingMode>("environment");
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState<AnalyzeResult | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   // Fungsi pembantu mengubah base64 dari canvas menjadi Blob/File
@@ -47,7 +54,7 @@ export default function CameraPage() {
 
   const handleAnalyze = async (base64Image: string) => {
     setLoading(true);
-    setResult("");
+    setResult(null);
     try {
       const formData = new FormData();
       const imageBlob = base64ToBlob(base64Image);
@@ -61,7 +68,7 @@ export default function CameraPage() {
       const data = await response.json();
       setResult(data.text || "Gagal mendapatkan hasil.");
     } catch (err) {
-      setResult("Terjadi kesalahan koneksi.");
+      setError("Terjadi kesalahan koneksi.");
     } finally {
       setLoading(false);
     }
@@ -120,7 +127,16 @@ export default function CameraPage() {
       {result && (
         <div className="p-4 bg-gray-100 rounded-lg border-l-4 border-blue-500">
           <h3 className="font-bold mb-1">Hasil Analisis:</h3>
-          <p className="text-gray-700 leading-relaxed">{result}</p>
+          <p className="text-gray-700 leading-relaxed">nama: {result?.name}</p>
+          <p className="text-gray-700 leading-relaxed">warna: {result?.color}</p>
+          <p className="text-gray-700 leading-relaxed">deskripsi: {result?.desc}</p>
+          <p className="text-gray-700 leading-relaxed">kategori: {result?.category}</p>
+        </div>
+      )}
+      {error && (
+        <div className="p-4 bg-red-100 rounded-lg border-l-4 border-red-500">
+          <h3 className="font-bold mb-1">Error:</h3>
+          <p className="text-red-700 leading-relaxed">{error}</p>
         </div>
       )}
 

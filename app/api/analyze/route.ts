@@ -48,7 +48,7 @@ export async function POST(req: Request) {
         {
           role: "user",
           parts: [
-            { text: "Analisa barang di foto ini menggunakan bahasa Indonesia dan berikan output JSON dengan key: 'name', 'color', 'desc', 'category'." },
+            { text: "Analisa barang di foto ini menggunakan bahasa Indonesia dan berikan output JSON dengan key: 'name', 'color', 'desc', 'category'. untuk category saya mau 1 kata saja" },
             {
               inlineData: {
                 data: base64Data,
@@ -66,8 +66,9 @@ export async function POST(req: Request) {
 
     const response = result.response;
     const text = response.text();
+    const json = JSON.parse(text);
 
-    return NextResponse.json({ text });
+    return NextResponse.json({ text: json }, { status: 200 });
   } catch (error: any) {
     console.error("Gemini Error Details:", error);
 

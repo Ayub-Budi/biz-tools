@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Camera from "../Component/Partial/camera";
+import Camera from "../Component/partial/camera";
 import Analyze from "@/Component/analyze";
 import { useState } from "react";
 

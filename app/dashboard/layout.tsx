@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Sidebar from "@/Component/layout/sidebar";
+
 export const metadata: Metadata = {
   title: "Dashboard",
   description: "This is the dashboard layout",
@@ -10,14 +12,10 @@ export default function DashboardLayout({
 }>) {
   return (
     <>
-      <main className="flex flex-col min-h-screen bg-blue-100 p-4 gap-3">
-        <nav className="flex">
-          <h1 className="text-2xl font-bold">{metadata.title as string}</h1>
-        </nav>
-        <div className="flex-1 bg-white rounded-2xl min-h-full w-full flex">
-          <div className="w-64 border-r p-4"></div>
-          <div>{children}</div>
-        </div>
+      <main className="flex flex-col h-screen bg-gray-100 p-4 gap-3">
+        <Sidebar>
+          aaaa
+        </Sidebar>
       </main>
     </>
   );

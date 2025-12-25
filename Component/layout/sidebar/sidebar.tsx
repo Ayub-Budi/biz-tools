@@ -4,11 +4,7 @@ import SidebarItem from "./item";
 import { sidebarMenus } from "./sidebar.config";
 
 
-export default function SidebarLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function SidebarLayout() {
   const [isOpen, setIsOpen] = useState(true);
 
   return (

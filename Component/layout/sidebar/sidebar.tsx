@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import SidebarItem from "./item";
-import { sidebarMenus } from "./sidebar.config";
+import { sidebarMenus } from "@/config/sidebar";
 
 
 export default function SidebarLayout() {

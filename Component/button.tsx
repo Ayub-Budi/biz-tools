@@ -23,11 +23,11 @@ export default function PrimaryButton({
   }
 
   const outlineColor = {
-    primary : 'border border-blue-500 bg-transparent text-blue-500 hover:bg-blue-100',
-    danger : 'border border-red-500 bg-transparent text-red-500 hover:bg-red-100',
-    success : 'border border-green-500 bg-transparent text-green-500 hover:bg-green-100',
-    warning : 'border border-yellow-500 bg-transparent text-yellow-500 hover:bg-yellow-100',
-    secondary : 'border border-gray-500 bg-transparent text-gray-500 hover:bg-gray-100',
+    primary : 'border border-blue-500 bg-transparent !text-blue-500 hover:bg-blue-100 hover:!text-white',
+    danger : 'border border-red-500 bg-transparent !text-red-500 hover:bg-red-100 hover:!text-white',
+    success : 'border border-green-500 bg-transparent !text-green-500 hover:bg-green-100 hover:!text-white',
+    warning : 'border border-yellow-500 bg-transparent !text-yellow-500 hover:bg-yellow-100 hover:!text-white',
+    secondary : 'border border-gray-500 bg-transparent !text-gray-500 hover:bg-gray-100 hover:!text-white',
   }
   return (
     <button

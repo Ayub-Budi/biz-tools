@@ -4,7 +4,7 @@ export default function authPage() {
   return <div className="flex min-h-screen p-5 bg-gray-200 gap-3">
     <div className="flex-1 bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center">
         <h2 className="text-2xl font-bold mb-4">Login</h2>
-        <form className="space-y-4 max-w-[400px] w-full">
+        <form className="space-y-4 max-w-100 w-full">
             <Input
               label="Email"
               type="email"

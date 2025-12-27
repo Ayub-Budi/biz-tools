@@ -5,8 +5,6 @@ import { sidebarMenus } from "@/config/sidebar";
 
 
 export default function SidebarLayout() {
-  const [isOpen, setIsOpen] = useState(true);
-
   return (
     <div className="bg-white flex flex-col w-75 h-full p-3 rounded-xl shadow-lg">
       <div className="flex gap-3 items-center mb-6">

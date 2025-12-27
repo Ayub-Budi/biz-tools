@@ -12,9 +12,14 @@ export const sidebarMenus: SidebarMenuItem[] = [
     icon: "Users",
   },
   {
-    label: "Pengaturan",
-    href: "/settings",
-    icon: "Settings",
+    label: "Stocks",
+    href: "/stocks",
+    icon: "CirclePile",
+  },
+  {
+    label: "Master Data",
+    href: "/master-data",
+    icon: "Database",
   },
   {
     label: "Profil",

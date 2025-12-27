@@ -4,7 +4,7 @@ import { Aperture, SwitchCamera } from 'lucide-react';
 
 type FacingMode = "user" | "environment";
 
-export default function Camera({ title, onCapture, isLoading }: { title?: string, onCapture?: (blob: Blob) => void , isLoading?: boolean }) {
+export default function Camera({ title, onCapture, isLoading, active = true }: { title?: string, onCapture?: (blob: Blob) => void , isLoading?: boolean, active?: boolean }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
 
@@ -39,10 +39,24 @@ export default function Camera({ title, onCapture, isLoading }: { title?: string
     }
   };
 
+  const stopCamera = () => {
+    streamRef.current?.getTracks().forEach((t) => t.stop());
+    streamRef.current = null;
+    if (videoRef.current) {
+      videoRef.current.srcObject = null;
+    }
+  };
+
+
   useEffect(() => {
-    startCamera();
-    return () => streamRef.current?.getTracks().forEach((t) => t.stop());
-  }, [facingMode]);
+    if (active) {
+      startCamera();
+    } else {
+      stopCamera();
+    }
+
+    return () => stopCamera();
+  }, [active, facingMode]);
 
 
   const capture = () => {
@@ -60,10 +74,12 @@ export default function Camera({ title, onCapture, isLoading }: { title?: string
   };
 
   return (
-    <div className="max-w-md mx-auto  space-y-4">
-      <h2 className="text-xl font-bold text-center">
-        {title || "Camera Analyzer"}
-      </h2>
+    <div className="space-y-4">
+      {title && (
+        <h2 className="text-center text-xl font-bold">
+          {title}
+        </h2>
+      )}
 
       <div className="relative overflow-hidden rounded-lg bg-black w-full">
         <video

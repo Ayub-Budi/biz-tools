@@ -13,7 +13,7 @@ export default function SidebarItem({
   icon: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  const isActive = pathname === href;
+  const isActive = pathname.startsWith(href);
 
   return (
     <Link href={href} className="flex gap-2 pl-4 h-8 items-center relative">
@@ -23,3 +23,4 @@ export default function SidebarItem({
     </Link>
   );
 }
+

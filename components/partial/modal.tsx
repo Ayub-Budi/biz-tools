@@ -1,4 +1,4 @@
-import Icon from "@/component/partial/icon";
+import Icon from "@/components/partial/icon";
 
 type Type = "center" | "left" | "right";
 type ModalProps = {

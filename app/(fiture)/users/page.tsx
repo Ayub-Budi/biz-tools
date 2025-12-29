@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
-import Button from "@/component/button";
+import Button from "@/components/button";
 import Card from "./component/card";
-import Modal from "@/component/partial/modal";
-import Input from "@/component/input";
+import Modal from "@/components/partial/modal";
+import Input from "@/components/input";
 
 export default function UsersPage() {
   const [showModalAdd, setShowModalAdd] = useState(false);

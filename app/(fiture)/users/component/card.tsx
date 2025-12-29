@@ -2,8 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import DynamicIcon from "@/component/partial/icon";
-import Button from "@/component/button";
+import DynamicIcon from "@/components/partial/icon";
+import Button from "@/components/button";
 
 type User = {
   id: number;

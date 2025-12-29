@@ -1,6 +1,6 @@
 "use client";
-import Button from "@/component/button";
-import Input from "@/component/input";
+import Button from "@/components/button";
+import Input from "@/components/input";
 import { useRouter } from "next/navigation";
 export default function authPage() {
   const router = useRouter();

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import Camera from "@/component/partial/camera";
-import Modal from "@/component/partial/modal";
+import Camera from "@/components/partial/camera";
+import Modal from "@/components/partial/modal";
 export default function AddPage() {
   const [isOpen, setIsOpen] = useState(false);
   return (

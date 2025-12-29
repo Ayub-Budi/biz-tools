@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Sidebar from "@/component/layout/sidebar";
-import Navbar from "@/component/layout/navbar";
+import Sidebar from "@/components/layout/sidebar";
+import Navbar from "@/components/layout/navbar";
 
 export const metadata: Metadata = {
   title: "Dashboard",

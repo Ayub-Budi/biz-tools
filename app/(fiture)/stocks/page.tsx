@@ -1,11 +1,11 @@
 "use client";
-import Button from "@/component/button";
+import Button from "@/components/button";
 import Card from "./components/card";
 import { useState } from "react";
-import Modal from "@/component/partial/modal";
-import Input from "@/component/input";
-import Camera from "@/component/partial/camera";
-import Icon from "@/component/partial/icon";
+import Modal from "@/components/partial/modal";
+import Input from "@/components/input";
+import Camera from "@/components/partial/camera";
+import Icon from "@/components/partial/icon";
 
 export default function StokPage() {
   const [showModalAdd, setShowModalAdd] = useState(false);

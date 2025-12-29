@@ -1,6 +1,6 @@
 "use client";
 import Button from "@/component/button";
-import Card from "./component/card";
+import Card from "./components/card";
 import { useState } from "react";
 import Modal from "@/component/partial/modal";
 import Input from "@/component/input";

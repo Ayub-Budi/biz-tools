@@ -1,5 +1,4 @@
-
-import Icon from '@/Component/partial/icon';
+import Icon from "@/component/partial/icon";
 
 type Type = "center" | "left" | "right";
 type ModalProps = {
@@ -10,21 +9,36 @@ type ModalProps = {
   title?: string;
 };
 
-export default function Modal({ isOpen, onClose, children, type = "right", title }: ModalProps) {
+export default function Modal({
+  isOpen,
+  onClose,
+  children,
+  type = "right",
+  title,
+}: ModalProps) {
   if (!isOpen) return null;
-  const locationMap: Record<Type, { containerClass: string; cardClass: string }> = {
+  const locationMap: Record<
+    Type,
+    { containerClass: string; cardClass: string }
+  > = {
     center: {
-      containerClass: 'fixed inset-0 z-50 flex items-center justify-center bg-black/50',
-      cardClass: 'relative w-full h-full md:h-fit md:max-w-xl md:rounded-lg bg-white shadow-lg',
+      containerClass:
+        "fixed inset-0 z-50 flex items-center justify-center bg-black/50",
+      cardClass:
+        "relative w-full h-full md:h-fit md:max-w-xl md:rounded-lg bg-white shadow-lg",
     },
     left: {
-      containerClass: 'fixed inset-0 z-50 flex items-end md:items-center bg-black/50',
-      cardClass: 'relative w-full h-[90vh] md:h-full md:max-w-md rounded-t-xl md:rounded-r-xl md:rounded-l-none bg-white shadow-lg',
+      containerClass:
+        "fixed inset-0 z-50 flex items-end md:items-center bg-black/50",
+      cardClass:
+        "relative w-full h-[90vh] md:h-full md:max-w-md rounded-t-xl md:rounded-r-xl md:rounded-l-none bg-white shadow-lg",
     },
     right: {
-      containerClass: 'fixed inset-0 z-50 flex items-end md:items-center justify-end bg-black/50',
-      cardClass: 'relative w-full  h-[90vh] md:h-full md:max-w-md rounded-t-xl md:rounded-l-xl md:rounded-r-none bg-white shadow-lg',
-    }
+      containerClass:
+        "fixed inset-0 z-50 flex items-end md:items-center justify-end bg-black/50",
+      cardClass:
+        "relative w-full  h-[90vh] md:h-full md:max-w-md rounded-t-xl md:rounded-l-xl md:rounded-r-none bg-white shadow-lg",
+    },
   };
 
   return (

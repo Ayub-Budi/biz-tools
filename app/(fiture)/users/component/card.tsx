@@ -2,8 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import DynamicIcon from "@/Component/partial/icon";
-import Button from "@/Component/button";
+import DynamicIcon from "@/component/partial/icon";
+import Button from "@/component/button";
 
 type User = {
   id: number;
@@ -45,7 +45,9 @@ export default function UserCard({ user }: Readonly<{ user: User }>) {
           <p className="font-semibold text-gray-500">{user.email}</p>
         </div>
       </div>
-      <Button outline type="primary">Detail</Button>
+      <Button outline type="primary">
+        Detail
+      </Button>
     </div>
   );
 }

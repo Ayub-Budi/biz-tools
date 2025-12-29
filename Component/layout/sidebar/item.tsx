@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import DynamicIcon from "@/Component/partial/icon";
+import DynamicIcon from "@/component/partial/icon";
 
 export default function SidebarItem({
   href,
@@ -17,10 +17,13 @@ export default function SidebarItem({
 
   return (
     <Link href={href} className="flex gap-2 pl-4 h-8 items-center relative">
-      <div className={`absolute left-0 w-3 h-full bg-blue-500 rounded-l-md ${isActive ? "block" : "hidden"}`}></div>
+      <div
+        className={`absolute left-0 w-3 h-full bg-blue-500 rounded-l-md ${
+          isActive ? "block" : "hidden"
+        }`}
+      ></div>
       <DynamicIcon name={icon as string} />
       <span>{title}</span>
     </Link>
   );
 }
-

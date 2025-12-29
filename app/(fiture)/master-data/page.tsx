@@ -1,5 +1,5 @@
-import Button from "@/Component/button";
-import Icon from "@/Component/partial/icon";
+import Button from "@/component/button";
+import Icon from "@/component/partial/icon";
 
 const Card = ({ name, desc }: Readonly<{ name: string; desc: string }>) => {
   return (

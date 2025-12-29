@@ -1,7 +1,7 @@
 "use client";
 import { pageConfigMap } from "@/config/page";
 import { usePathname } from "next/navigation";
-import Icon from "@/Component/partial/icon";
+import Icon from "@/component/partial/icon";
 export default function DashboardLayout() {
   const pathname = usePathname();
   const pageConfig = pageConfigMap[pathname];
@@ -22,5 +22,4 @@ export default function DashboardLayout() {
       </div>
     </div>
   );
-
 }

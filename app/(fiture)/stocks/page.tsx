@@ -1,17 +1,15 @@
 "use client";
-import Button from "@/Component/button";
+import Button from "@/component/button";
 import Card from "./component/card";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
-import Modal from "@/Component/partial/modal";
-import Input from "@/Component/input";
-import Camera from "@/Component/partial/camera";
-import Icon from "@/Component/partial/icon";
+import Modal from "@/component/partial/modal";
+import Input from "@/component/input";
+import Camera from "@/component/partial/camera";
+import Icon from "@/component/partial/icon";
 
 export default function StokPage() {
   const [showModalAdd, setShowModalAdd] = useState(false);
   const [showSuggest, setShowSuggest] = useState(false);
-  const router = useRouter();
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-center justify-between">
